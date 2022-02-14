@@ -49,12 +49,21 @@ snackButtons.forEach((button) => {
 
 // 2. MAKE MONEY CHALLENGE
 
-const makeMoneyForm = document.querySelector(".two form");
-const formContainer = document.querySelector(".two");
-const coins = document.querySelectorAll("#select");
+const form = document.querySelector(".two form");
+const bank = document.querySelector(".bank");
 
-makeMoneyForm.addEventListener("submit", (e) => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
+  const howMany = document.querySelector("#howMany").value;
+  const whichCoin = document.querySelector("#whichCoin").value;
+  //   console.log(howMany, whichCoin);
+  for (let i = 0; i < howMany; i++) {
+    const newCoin = document.createElement("div");
+    newCoin.classList.add("coin", whichCoin);
+    // /DDS A DYNAMIC CLASS
+    newCoin.textContent = whichCoin;
+    bank.append(newCoin);
+  }
 });
 
 // 3. LIGHT BULB CHALLENGE
