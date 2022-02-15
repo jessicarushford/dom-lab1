@@ -9,10 +9,11 @@ const totalParagraph = document.querySelector(".total");
 // const gummiesButton = document.querySelector(".gummies");
 
 const snackButtons = document.querySelectorAll(".snack-button");
+// can also use ".one button" instead of class ".snack-button"
 
 let total = 0;
 
-console.dir(totalParagraph);
+// console.dir(totalParagraph);
 
 // colaButton.addEventListener("click", () => {
 //   total += 2;
@@ -43,6 +44,7 @@ snackButtons.forEach((button) => {
     const cost = button.getAttribute("date-cost");
     total += parseInt(cost);
     // console.log(total);
+    // parseInt changes the string of info into a number
     totalParagraph.textContent = `Total: $${total.toFixed(2)}`;
   });
 });
@@ -54,13 +56,15 @@ const bank = document.querySelector(".bank");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  //   prevents from reloading the page first on a form, that is the default
   const howMany = document.querySelector("#howMany").value;
+  //   .value will grab the value of that element (which is an input)
   const whichCoin = document.querySelector("#whichCoin").value;
   //   console.log(howMany, whichCoin);
   for (let i = 0; i < howMany; i++) {
     const newCoin = document.createElement("div");
     newCoin.classList.add("coin", whichCoin);
-    // /DDS A DYNAMIC CLASS
+    // /DDS A DYNAMIC CLASS -- these classes dictate manipulation in CSS
     newCoin.textContent = whichCoin;
     bank.append(newCoin);
   }
@@ -68,30 +72,33 @@ form.addEventListener("submit", (e) => {
 
 // 3. LIGHT BULB CHALLENGE
 
-const lightBulb = document.querySelector(".light-bulb");
-const on = document.querySelector(".on");
-const off = document.querySelector(".off");
-const toggle = document.querySelector(".toggle");
-const end = document.querySelector(".end");
+const bulb = document.querySelector(".bulb");
+const on = document.querySelector(".on-switch");
+const off = document.querySelector(".off-switch");
+const toggle = document.querySelector(".toggle-switch");
+const end = document.querySelector(".end-switch");
 
 on.addEventListener("click", () => {
-  on.style.backgroundColor = "lightgray";
+  bulb.classList.add("on");
 });
 
 off.addEventListener("click", () => {
-  off.style.backgroundColor = "darkgray";
+  bulb.classList.remove("on");
 });
 
 toggle.addEventListener("click", () => {
-  if (toggle.style.backgroundColor == "lightgray") {
-    toggle.style.backgroundColor = "darkgray";
-  } else {
-    toggle.style.backgroundColor = "lightgray";
-  }
+  bulb.classList.toggle("on");
 });
 
+//   if (toggle.style.backgroundColor == "lightgray") {
+//     toggle.style.backgroundColor = "darkgray";
+//   } else {
+//     toggle.style.backgroundColor = "lightgray";
+//   }
+// });
+
 end.addEventListener("click", () => {
-  lightBulb.remove();
+  bulb.remove();
   on.disabled = true;
   off.disabled = true;
   toggle.disabled = true;
